@@ -1,6 +1,6 @@
 import users from '../models/users';
 import { IUser } from '../interfaces/users';
-import { jwtSign } from '../helpers/generateToken';
+import { jwtSign, jwtVerify } from '../helpers/generateToken';
 import crypto from '../helpers/passwordCrypt';
 
 class LoginService {
@@ -24,6 +24,20 @@ class LoginService {
       },
       token,
     };
+  };
+
+  validateLogin = async (token: string): Promise<string | null> => {
+    if (!token) return null;
+
+    const dataToken = jwtVerify(token);
+    console.log(dataToken);
+
+    const user = await users.findOne({ where: { id: dataToken.data.id } });
+    if (!user) return null;
+
+    const userLogin = user.role;
+
+    return userLogin;
   };
 }
 export default new LoginService();

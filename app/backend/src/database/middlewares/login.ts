@@ -13,10 +13,8 @@ const loginSchema = Joi.object().keys({
 
 const isValidLogin = (req: Request, _res: Response, next: NextFunction) => {
   const { email, password } = req.body;
-  // console.log('16', loginSchema.validate({ email, password }));
 
   const { error } = loginSchema.validate({ email, password });
-  console.log('error', error);
   if (error) throw error;
 
   next();
