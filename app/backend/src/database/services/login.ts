@@ -30,7 +30,6 @@ class LoginService {
     if (!token) return null;
 
     const dataToken = jwtVerify(token);
-    console.log(dataToken);
 
     const user = await users.findOne({ where: { id: dataToken.data.id } });
     if (!user) return null;
