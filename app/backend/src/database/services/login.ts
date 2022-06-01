@@ -1,6 +1,6 @@
 import users from '../models/users';
 import { IUser } from '../interfaces/users';
-import generateToken from '../helpers/generateToken';
+import { jwtSign } from '../helpers/generateToken';
 import crypto from '../helpers/passwordCrypt';
 
 class LoginService {
@@ -13,7 +13,7 @@ class LoginService {
     const teste = crypto(password, user.password);
     if (!teste) return null;
 
-    const token = generateToken({ data: { role: user.role, id: user.id } });
+    const token = jwtSign({ data: { role: user.role, id: user.id } });
 
     return {
       user: {
