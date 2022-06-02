@@ -1,6 +1,6 @@
 import ITeam from './teams';
 
-interface IMatch {
+export interface IMatch {
   id: number,
   homeTeam: number,
   homeTeamGoals: number,
@@ -11,4 +11,11 @@ interface IMatch {
   teamAway?: ITeam,
 }
 
-export default IMatch;
+export interface ICreateMatch {
+  id?: number,
+  homeTeam: number,
+  homeTeamGoals: number,
+  awayTeam: number,
+  awayTeamGoals: number,
+  inProgress: boolean,
+}
