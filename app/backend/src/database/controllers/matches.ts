@@ -19,6 +19,16 @@ class MatchControllers {
     try {
       const { authorization } = req.headers;
       const newGame = await MatchServices.createMatch(req.body, authorization as string);
+
+      if (!newGame) {
+        return res.status(401)
+          .json({ message: 'It is not possible to create a match with two equal teams' });
+      }
+
+      if (newGame === true) {
+        return res.status(404).json({ message: 'There is no team with such id!' });
+      }
+
       return res.status(201).json(newGame);
     } catch (error) {
       next(error);
