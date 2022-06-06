@@ -28,7 +28,7 @@ describe('Testando rotas de Login', () => {
           .stub(users, "findOne")
           .resolves(mocks.userModel[0] as users);
           
-          chaiHttpResponse = await chai
+        chaiHttpResponse = await chai
           .request(app)
           .post('/login')
           .send(mocks.login)
@@ -455,3 +455,60 @@ describe('Testando rotas de Matches', () => {
   });
 });
 
+describe('Testando rotas de Leaderboard', () => {
+  let chaiHttpResponse: Response;
+
+  describe('Quando há uma requisição GET para /leaderboard/home', () => {
+    describe('Requisição retorna com sucesso', async () => {
+      before(async () => {
+        sinon
+          .stub(teams, "findAll")
+          .resolves(mocksTeams.teams as teams[]);
+        sinon
+          .stub(matches, 'findAll')
+          .resolves(mocksMatches.matches as unknown as matches[]);
+        chaiHttpResponse = await chai
+          .request(app)
+          .get('/leaderboard/home')
+      })
+
+      after(() => {
+        (teams.findAll as sinon.SinonStub).restore();
+        (matches.findAll as sinon.SinonStub).restore();
+      })
+
+      it('Verifica retorno do status 200', () => {
+        expect(chaiHttpResponse).to.have.status(200);
+      });
+
+      // it('Verifica retorno do array de times', () => {
+      //   expect(chaiHttpResponse.body).to.deep.equal(mocksMatches.boardHome);
+      // });
+    });
+  });
+
+  describe('Quando há uma requisição GET para /leaderboard/away', () => {
+    describe('Requisição retorna com sucesso', async () => {
+      before(async () => {
+        sinon
+          .stub(teams, "findAll")
+          .resolves(mocksTeams.teams as teams[]);
+        sinon
+          .stub(matches, 'findAll')
+          .resolves(mocksMatches.matches as unknown as matches[]);
+        chaiHttpResponse = await chai
+          .request(app)
+          .get('/leaderboard/away')
+      })
+
+      after(() => {
+        (teams.findAll as sinon.SinonStub).restore();
+        (matches.findAll as sinon.SinonStub).restore();
+      })
+
+      it('Verifica retorno do status 200', () => {
+        expect(chaiHttpResponse).to.have.status(200);
+      });
+    });
+  });
+});

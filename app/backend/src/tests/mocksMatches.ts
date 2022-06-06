@@ -9,8 +9,6 @@ class MocksMatches {
       awayTeam: 8,
       awayTeamGoals: 1,
       inProgress: false,
-      home_team: 16,
-      away_team: 8,
       teamHome: {
         teamName: 'São Paulo'
       },
@@ -25,8 +23,6 @@ class MocksMatches {
       awayTeam: 14,
       awayTeamGoals: 1,
       inProgress: true,
-      home_team: 9,
-      away_team: 14,
       teamHome: {
         teamName: 'Internacional'
       },
@@ -57,6 +53,45 @@ class MocksMatches {
     homeTeamGoals: 10,
     awayTeamGoals: 1
   }
+
+  // public boardHome: [
+  //   {
+  //     name: 'Santos',
+  //     totalPoints: 9,
+  //     totalGames: 3,
+  //     totalVictories: 3,
+  //     totalDraws: 0,
+  //     totalLosses: 0,
+  //     goalsFavor: 9,
+  //     goalsOwn: 3,
+  //     goalsBalance: 6,
+  //     efficiency: 100
+  //   },
+  //   {
+  //     name: 'Palmeiras',
+  //     totalPoints: 7,
+  //     totalGames: 3,
+  //     totalVictories: 2,
+  //     totalDraws: 1,
+  //     totalLosses: 0,
+  //     goalsFavor: 10,
+  //     goalsOwn: 5,
+  //     goalsBalance: 5,
+  //     efficiency: 77.78
+  //   },
+  //   {
+  //     name: 'Corinthians',
+  //     totalPoints: 6,
+  //     totalGames: 2,
+  //     totalVictories: 2,
+  //     totalDraws: 0,
+  //     totalLosses: 0,
+  //     goalsFavor: 6,
+  //     goalsOwn: 1,
+  //     goalsBalance: 5,
+  //     efficiency: 100
+  //   }
+  // ]
 }
 
 export default new MocksMatches();
